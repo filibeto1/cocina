@@ -435,105 +435,157 @@
         </div>
         
         <div class="content" id="seccion3">
-            <h2>SECCIÓN 3: PLAN DE DESARROLLO DE PROYECTO MÓVIL</h2>
+    <h2>SECCIÓN 3: PLAN DE DESARROLLO DE PROYECTO MÓVIL</h2>
+    
+    <h3>1. Nombre del Proyecto</h3>
+    <p>CocinaFácil<br>Tu recetario inteligente</p>
+    
+    <h3>2. Visión del Proyecto</h3>
+    <p>Desarrollar una aplicación móvil intuitiva que resuelva el dilema diario de "¿qué cocino?" al permitir a los usuarios ingresar los ingredientes que tienen disponibles y recibir sugerencias de recetas precisas y personalizables. La app busca reducir el desperdicio de comida, ahorrar dinero y tiempo, y hacer de la cocina una experiencia más accesible y divertida.</p>
+    
+    <h3>3. Integrantes de Equipo</h3>
+    <ul>
+        <li>Miguel Angel Anastasio Nava - Product Owner / DiseñadorUX/UI</li>
+        <li>Miguel Angel Anastasio Nava - Desarrollador Backend</li>
+        <li>Filiberto Navarro Grifaldo - Desarrollador Flutter / Tester</li>
+    </ul>
+    
+    <h3>4. Tareas Críticas de Inicio de Proyecto</h3>
+    <div style="background: #e8f5e8; padding: 25px; border-radius: 10px; border-left: 5px solid #27ae60; margin: 25px 0;">
+        <h4 style="color: #27ae60; margin-top: 0;">Tareas Pre-Sprint (Semana 0)</h4>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;">
             
-            <h3>1. Nombre del Proyecto</h3>
-            <p>CocinaFácil<br>Tu recetario inteligente</p>
-            
-            <h3>2. Visión del Proyecto</h3>
-            <p>Desarrollar una aplicación móvil intuitiva que resuelva el dilema diario de "¿qué cocino?" al permitir a los usuarios ingresar los ingredientes que tienen disponibles y recibir sugerencias de recetas precisas y personalizables. La app busca reducir el desperdicio de comida, ahorrar dinero y tiempo, y hacer de la cocina una experiencia más accesible y divertida.</p>
-            
-            <h3>3. Integrantes de Equipo</h3>
-            <ul>
-                <li>Miguel Angel Anastasio Nava - Product Owner / Diseñadora UX/UI</li>
-                <li>Miguel Angel Anastasio Nava - Desarrollador Backend</li>
-                <li>Filiberto Navarro Grifaldo - Desarrollador Flutter / Tester</li>
-            </ul>
-            
-            <h3>4. Justificación de la Metodología</h3>
-            <p>Se utilizará Scrum debido a:</p>
-            <ul>
-                <li>La necesidad de entregar funcionalidades de valor incremental y obtener feedback rápido de usuarios potenciales.</li>
-                <li>La capacidad de adaptar el plan fácilmente basado en qué características (como el escaneo por OCR o los filtros dietéticos) tienen mayor prioridad después de los primeros sprints.</li>
-                <li>Fomenta la colaboración constante en un equipo con roles multifuncionales.</li>
-            </ul>
-            
-            <h3>5. Arquitectura de la Aplicación Móvil</h3>
-            <p>Clean Architecture + BLoC (o Provider)</p>
-            <ul>
-                <li><strong>Capa de Presentación:</strong> Widgets de Flutter manejados por BLoC para un control de estado predecible y fácil de testear.</li>
-                <li><strong>Capa de Dominio:</strong> Contiene las entidades (Recipe, Ingredient) y los casos de uso (GetRecipesByIngredients, GetRandomRecipe).</li>
-                <li><strong>Capa de Datos:</strong> Implementa repositorios que deciden si obtener los datos de una fuente local (SQLite) o remota (API Spoonacular en un futuro).</li>
-            </ul>
-            
-            <h3>6. Framework de Desarrollo</h3>
-            <p><strong>Flutter</strong></p>
-            <ul>
-                <li>Desarrollo nativo multiplataforma (iOS y Android) desde un solo código base.</li>
-                <li>Rica ecosystema de paquetes para funcionalidades clave (cámara, base de datos, HTTP).</li>
-                <li>Hot reload para una iteración rápida en el diseño de la UI.</li>
-            </ul>
-            
-            <h3>7. Patrón de Diseño</h3>
-            <ul>
-                <li><strong>Repository Pattern:</strong> Para abstractar el origen de los datos (local vs. remoto). El resto de la app depende de abstracciones, no de implementaciones concretas.</li>
-                <li><strong>BLoC Pattern:</strong> Para manejar todo el estado de la aplicación de manera reactiva y organizada.</li>
-            </ul>
-            
-            <h3>8. Plan de Desarrollo (Sprints)</h3>
-            <div class="sprints-grid">
-                <div class="sprint-card">
-                    <h4>Sprint 0 (Inicialización)</h4>
-                    <p>Configuración del entorno, repositorio Git, y definición de la arquitectura. Creación de un conjunto inicial de 50 recetas en un archivo JSON local.</p>
-                </div>
-                
-                <div class="sprint-card">
-                    <h4>Sprint 1 (MVP - Búsqueda Básica)</h4>
-                    <p>Pantalla de ingreso de ingredientes (con chips). Lógica de búsqueda y filtrado en la lista local de recetas. Pantalla de resultados y de detalle de receta básica.</p>
-                </div>
-                
-                <div class="sprint-card">
-                    <h4>Sprint 2 (Core Features)</h4>
-                    <p>Implementación de la base de datos local SQLite para almacenar recetas y favoritos. Funcionalidad completa de "Favoritos". Mejora del UI/UX.</p>
-                </div>
-                
-                <div class="sprint-card">
-                    <h4>Sprint 3 (Búsqueda Inteligente)</h4>
-                    <p>Implementación de la lógica para recetas exactas y parciales (indicando los ingredientes faltantes). Agregar modo "Aleatorio".</p>
-                </div>
-                
-                <div class="sprint-card">
-                    <h4>Sprint 4 (Funcionalidades Avanzadas Opcionales)</h4>
-                    <p>Integración con la cámara y OCR (Google ML Kit) para escanear ingredientes. Implementación de filtros dietéticos (vegano, sin gluten, etc.).</p>
-                </div>
-                
-                <div class="sprint-card">
-                    <h4>Sprint 5 (Pulido y Despliegue)</h4>
-                    <p>Pruebas exhaustivas, optimización de performance, y preparación para el despliegue en Google Play Store.</p>
-                </div>
+            <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #bdc3c7;">
+                <h5 style="color: #2980b9; margin-top: 0; margin-bottom: 15px;">🔧 Configuración Técnica</h5>
+                <ul style="margin: 0; padding-left: 20px;">
+                    <li>Instalar y configurar Flutter SDK</li>
+                    <li>Configurar IDE (VS Code/Android Studio)</li>
+                    <li>Crear repositorio Git en GitHub</li>
+                    <li>Configurar estructura de ramas (main, develop)</li>
+                    <li>Crear proyecto Flutter base</li>
+                    <li>Configurar dependencias iniciales</li>
+                </ul>
             </div>
             
-            <h3>9. Estrategias de Prueba</h3>
-            <ul>
-                <li><strong>Pruebas Unitarias:</strong> Para los casos de uso, BLoCs y modelos de datos. (paquete test).</li>
-                <li><strong>Pruebas Widget:</strong> Para verificar que los widgets se construyen correctamente y reaccionan a los estados del BLoC.</li>
-                <li><strong>Pruebas de Integración:</strong> Para flujos de usuario completos, como "ingresar ingredientes -> ver lista -> ver detalle -> agregar a favoritos".</li>
-                <li><strong>Pruebas Manuales:</strong> En diferentes dispositivos y tamaños de pantalla.</li>
-            </ul>
+            <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #bdc3c7;">
+                <h5 style="color: #2980b9; margin-top: 0; margin-bottom: 15px;">📋 Planificación</h5>
+                <ul style="margin: 0; padding-left: 20px;">
+                    <li>Definir historias de usuario detalladas</li>
+                    <li>Crear backlog de producto priorizado</li>
+                    <li>Establecer Definition of Done</li>
+                    <li>Planificar Sprint 1 (tareas y estimaciones)</li>
+                    <li>Configurar herramientas de seguimiento</li>
+                    <li>Definir calendario de ceremonias Scrum</li>
+                </ul>
+            </div>
             
-            <h3>10. Estrategias de Versionamiento</h3>
-            <ul>
-                <li><strong>Herramienta:</strong> Git con repositorio en GitHub.</li>
-                <li><strong>Estrategia de Ramas:</strong> GitHub Flow (simplificado para un equipo pequeño).</li>
-                <li><strong>main:</strong> Siempre estable y listo para producción.</li>
-                <li><strong>develop:</strong> Rama de integración principal.</li>
-                <li><strong>feature/:</strong> Ramas para nuevas funcionalidades, creadas desde develop.</li>
-                <li><strong>Convención de Commits:</strong> Conventional Commits (feat:, fix:, chore:, docs:).</li>
-            </ul>
+            <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #bdc3c7;">
+                <h5 style="color: #2980b9; margin-top: 0; margin-bottom: 15px;">🎨 Diseño y UX</h5>
+                <ul style="margin: 0; padding-left: 20px;">
+                    <li>Crear wireframes de pantallas principales</li>
+                    <li>Diseñar mockups de alta fidelidad</li>
+                    <li>Definir paleta de colores y tipografías</li>
+                    <li>Establecer guía de estilo visual</li>
+                    <li>Validar flujo de usuario principal</li>
+                    <li>Crear prototipos interactivos</li>
+                </ul>
+            </div>
             
-            <h3>11. Conclusión</h3>
-            <p>"CocinaFácil" es un proyecto con un propósito claro y un mercado objetivo muy amplio. La elección de Flutter y una arquitectura limpia y bien definida (Clean + BLoC) asegura un código mantenible, escalable y fácil de testear. Comenzar con una base de datos local permite un MVP rápido y funcional, con un camino claro para escalar en el futuro integrando una API externa como Spoonacular para ampliar el catálogo de recetas de manera casi infinita. Este proyecto no solo cumple con los requisitos académicos, sino que resulta en un producto tangible y útil.</p>
+            <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #bdc3c7;">
+                <h5 style="color: #2980b9; margin-top: 0; margin-bottom: 15px;">📊 Investigación</h5>
+                <ul style="margin: 0; padding-left: 20px;">
+                    <li>Investigar y recopilar 50 recetas iniciales</li>
+                    <li>Definir estructura de datos de recetas</li>
+                    <li>Crear archivo JSON con recetas base</li>
+                    <li>Investigar APIs de recetas (Spoonacular)</li>
+                    <li>Analizar competencia directa</li>
+                    <li>Validar propuesta de valor con usuarios</li>
+                </ul>
+            </div>
+            
         </div>
+        
+        <div style="background: #fff3cd; padding: 15px; border-radius: 8px; border: 1px solid #ffeaa7; margin-top: 20px;">
+            <h5 style="color: #856404; margin-top: 0;">⚠️ Entregables Críticos Antes del Sprint 1</h5>
+            <ul style="margin-bottom: 0;">
+                <li><strong>Repositorio Git</strong> configurado con estructura de proyecto</li>
+                <li><strong>Documento de Arquitectura</strong> detallado y aprobado</li>
+                <li><strong>Base de datos JSON</strong> con 50 recetas estructuradas</li>
+                <li><strong>Mockups aprobados</strong> de las 4 pantallas principales</li>
+                <li><strong>Backlog priorizado</strong> con estimaciones de esfuerzo</li>
+            </ul>
+        </div>
+    </div>
+    
+    <h3>5. Justificación de la Metodología</h3>
+    <p>Se utilizará Scrum debido a:</p>
+    <ul>
+        <li>La necesidad de entregar funcionalidades de valor incremental y obtener feedback rápido de usuarios potenciales.</li>
+        <li>La capacidad de adaptar el plan fácilmente basado en qué características (como el escaneo por OCR o los filtros dietéticos) tienen mayor prioridad después de los primeros sprints.</li>
+        <li>Fomenta la colaboración constante en un equipo con roles multifuncionales.</li>
+    </ul>
+    
+    <h3>6. Arquitectura de la Aplicación Móvil</h3>
+    <p>Clean Architecture + BLoC (o Provider)</p>
+    <ul>
+        <li><strong>Capa de Presentación:</strong> Widgets de Flutter manejados por BLoC para un control de estado predecible y fácil de testear.</li>
+        <li><strong>Capa de Dominio:</strong> Contiene las entidades (Recipe, Ingredient) y los casos de uso (GetRecipesByIngredients, GetRandomRecipe).</li>
+        <li><strong>Capa de Datos:</strong> Implementa repositorios que deciden si obtener los datos de una fuente local (SQLite) o remota (API Spoonacular en un futuro).</li>
+    </ul>
+    
+    <h3>7. Framework de Desarrollo</h3>
+    <p><strong>Flutter</strong></p>
+    <ul>
+        <li>Desarrollo nativo multiplataforma (iOS y Android) desde un solo código base.</li>
+        <li>Rica ecosystema de paquetes para funcionalidades clave (cámara, base de datos, HTTP).</li>
+        <li>Hot reload para una iteración rápida en el diseño de la UI.</li>
+    </ul>
+    
+    <h3>8. Patrón de Diseño</h3>
+    <ul>
+        <li><strong>Repository Pattern:</strong> Para abstractar el origen de los datos (local vs. remoto). El resto de la app depende de abstracciones, no de implementaciones concretas.</li>
+        <li><strong>BLoC Pattern:</strong> Para manejar todo el estado de la aplicación de manera reactiva y organizada.</li>
+    </ul>
+    
+    <h3>9. Plan de Desarrollo (Sprints)</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 20px; margin: 20px 0;">
+        <div style="background: #ecf0f1; padding: 20px; border-radius: 8px; border-left: 4px solid #e74c3c;">
+            <h4>Sprint 1 </h4>
+            <p>Configuración del entorno, repositorio Git, y definición de la arquitectura. Creación de un conjunto inicial de 50 recetas en un archivo JSON local.</p>
+        <p>Pantalla de ingreso de ingredientes (con chips). Lógica de búsqueda y filtrado en la lista local de recetas. Pantalla de resultados y de detalle de receta básica.</p>
+            <p>Implementación de la base de datos local SQLite para almacenar recetas y favoritos. Funcionalidad completa de "Favoritos". Mejora del UI/UX.</p>
+        </div>
+        
+        <div style="background: #ecf0f1; padding: 20px; border-radius: 8px; border-left: 4px solid #e74c3c;">
+            <h4>Sprint 2 </h4>
+            <p>Implementación de la lógica para recetas exactas y parciales (indicando los ingredientes faltantes). Agregar modo "Aleatorio".</p>
+         <p>Integración con la cámara y OCR (Google ML Kit) para escanear ingredientes. Implementación de filtros dietéticos (vegano, sin gluten, etc.).</p>
+        <p>Pruebas exhaustivas, optimización de performance, y preparación para el despliegue en Google Play Store.</p>
+        </div>
+    </div>
+    
+    <h3>10. Estrategias de Prueba</h3>
+    <ul>
+        <li><strong>Pruebas Unitarias:</strong> Para los casos de uso, BLoCs y modelos de datos. (paquete test).</li>
+        <li><strong>Pruebas Widget:</strong> Para verificar que los widgets se construyen correctamente y reaccionan a los estados del BLoC.</li>
+        <li><strong>Pruebas de Integración:</strong> Para flujos de usuario completos, como "ingresar ingredientes -> ver lista -> ver detalle -> agregar a favoritos".</li>
+        <li><strong>Pruebas Manuales:</strong> En diferentes dispositivos y tamaños de pantalla.</li>
+    </ul>
+    
+    <h3>11. Estrategias de Versionamiento</h3>
+    <ul>
+        <li><strong>Herramienta:</strong> Git con repositorio en GitHub.</li>
+        <li><strong>Estrategia de Ramas:</strong> GitHub Flow (simplificado para un equipo pequeño).</li>
+        <li><strong>main:</strong> Siempre estable y listo para producción.</li>
+        <li><strong>develop:</strong> Rama de integración principal.</li>
+        <li><strong>feature/:</strong> Ramas para nuevas funcionalidades, creadas desde develop.</li>
+        <li><strong>Convención de Commits:</strong> Conventional Commits (feat:, fix:, chore:, docs:).</li>
+    </ul>
+    
+    <h3>12. Conclusión</h3>
+    <p>"CocinaFácil" es un proyecto con un propósito claro y un mercado objetivo muy amplio. La elección de Flutter y una arquitectura limpia y bien definida (Clean + BLoC) asegura un código mantenible, escalable y fácil de testear. Comenzar con una base de datos local permite un MVP rápido y funcional, con un camino claro para escalar en el futuro integrando una API externa como Spoonacular para ampliar el catálogo de recetas de manera casi infinita. Este proyecto no solo cumple con los requisitos académicos, sino que resulta en un producto tangible y útil.</p>
+</div>
         
         <div class="content" id="seccion4">
             <h2>Sección 4. Desarrollar Aplicación con el Framework</h2>
@@ -643,7 +695,7 @@
     <footer>
         <div class="container">
             <p>Proyecto CocinaFácil - Desarrollo Móvil con Metodologías Ágiles</p>
-            <p>© 2023 - Todos los derechos reservados</p>
+            <p>© 2025 - Todos los derechos reservados</p>
         </div>
     </footer>
 </body>
