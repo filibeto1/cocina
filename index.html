@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CocinaFácil - Proyecto de Desarrollo Móvil</title>
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .quick-nav {
+            background-color: var(--secondary-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quick-nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        .quick-nav li {
+            margin: 0 1rem;
+        }
+        
+        .quick-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: background-color 0.3s;
+        }
+        
+        .quick-nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-top: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        .content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin: 2rem 0;
+        }
+        
+        .toc {
+            background-color: var(--light-color);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+        }
+        
+        .toc ul {
+            list-style-type: none;
+        }
+        
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .toc a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+        
+        .methodology-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .methodology-card {
+            background-color: var(--light-color);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .methodology-card h3 {
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .scrum-diagram {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .scrum-diagram img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+        
+        .sprints-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .sprint-card {
+            background-color: var(--light-color);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .sprint-card h4 {
+            color: var(--primary-color);
+        }
+        
+        .screenshots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .screenshot {
+            text-align: center;
+        }
+        
+        .screenshot img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s;
+        }
+        
+        .screenshot img:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Galería de imágenes de cocina */
+        .cooking-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .cooking-image {
+            text-align: center;
+            background-color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s;
+        }
+        
+        .cooking-image:hover {
+            transform: translateY(-5px);
+        }
+        
+        .cooking-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+        
+        .cooking-image p {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Información académica al final */
+        .academic-info {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin: 2rem 0;
+            border-left: 5px solid var(--secondary-color);
+        }
+        
+        .academic-info h2 {
+            color: var(--primary-color);
+            border-bottom: none;
+            text-align: center;
+        }
+        
+        .academic-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .academic-section {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .academic-section h3 {
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+            }
+            
+            .content {
+                padding: 1.5rem;
+            }
+            
+            .methodology-comparison, .sprints-grid, .cooking-gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .quick-nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .academic-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>CocinaFácil - Tu recetario inteligente</h1>
+            <p>Proyecto de Desarrollo Móvil con Metodologías Ágiles</p>
+        </div>
+    </header>
+    
+    <nav class="quick-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#seccion1">Metodologías Ágiles</a></li>
+                <li><a href="#seccion2">Metodología Scrum</a></li>
+                <li><a href="#seccion3">Plan de Desarrollo</a></li>
+                <li><a href="#seccion4">Framework y Pantallas</a></li>
+                <li><a href="#galeria">Galería Culinaria</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="toc">
+            <h2>Contenido</h2>
+            <ul>
+                <li><a href="#seccion1">Sección 1. Introducción sobre metodologías ágiles y arquitecturas aplicables al desarrollo de aplicaciones móviles</a></li>
+                <li><a href="#seccion2">Sección 2. Seleccionar una metodología ágil para el proceso de desarrollo Móvil</a></li>
+                <li><a href="#seccion3">Sección 3. Plan de desarrollo de proyecto móvil</a></li>
+                <li><a href="#seccion4">Sección 4. Desarrollar aplicación con el framework</a></li>
+                <li><a href="#galeria">Galería Culinaria</a></li>
+            </ul>
+        </div>
+        
+        <div class="content" id="seccion1">
+            <h2>Sección 1. Introducción sobre metodologías ágiles y arquitecturas aplicables al desarrollo de aplicaciones móviles</h2>
+            
+            <h3>1. Investigación y Justificación de Metodologías Ágiles en Desarrollo Móvil</h3>
+            <p>El desarrollo móvil se caracteriza por ciclos de vida cortos, mercados altamente competitivos y requisitos que cambian con frecuencia. Las metodologías ágiles son cruciales aquí porque se adaptan a la incertidumbre y fomentan la entrega incremental de valor, permitiendo obtener retroalimentación temprana del usuario y ajustar el producto rápidamente.</p>
+            
+            <h3>Comparativa de Metodologías</h3>
+            
+            <div class="methodology-comparison">
+                <div class="methodology-card">
+                    <h3>Scrumban</h3>
+                    <p><strong>¿Qué es?</strong> Una fusión híbrida de Scrum y Kanban. Toma la estructura de roles y eventos de Scrum y la visualización del flujo de trabajo y los límites de trabajo en curso (WIP) de Kanban.</p>
+                    <p><strong>Ventajas para móvil:</strong> Es ideal para equipos que necesitan la estructura de Scrum pero con la flexibilidad de Kanban para manejar tareas de mantenimiento o requerimientos imprevistos que son comunes en el desarrollo y operación (DevOps) de apps. Previene la sobrecarga del equipo al limitar las tareas en progreso.</p>
+                </div>
+                
+                <div class="methodology-card">
+                    <h3>Extreme Programming (XP)</h3>
+                    <p><strong>¿Qué es?</strong> Una metodología ágil que se centra en la calidad técnica del software y la responsividad ante cambios de requisitos. Sus prácticas clave incluyen Programación en Pareja, Desarrollo Guiado por Pruebas (TDD), Integración Continua (CI) e Iteraciones Cortas.</p>
+                    <p><strong>Ventajas para móvil:</strong> La alta calidad de código y las pruebas automatizadas son esenciales para las apps móviles, que se ejecutan en múltiples dispositivos y versiones de OS. XP reduce drásticamente los bugs y facilita la incorporación de cambios, algo constante en el desarrollo móvil.</p>
+                </div>
+                
+                <div class="methodology-card">
+                    <h3>Mobile-D</h3>
+                    <p><strong>¿Qué es?</strong> Una metodología ágil diseñada específicamente para el desarrollo de software móvil. Estructura el proyecto en cinco fases: Exploración, Inicialización, Producción, Estabilización y Pruebas.</p>
+                    <p><strong>Ventajas para móvil:</strong> Aborda desafíos específicos como la gran diversidad de dispositivos, las limitaciones de hardware (memoria, batería), la intermitencia de las redes y la integración con sensores. Enfoca esfuerzos en la estabilización y pruebas rigurosas, asegurando que la app funcione de manera confiable en condiciones del mundo real.</p>
+                </div>
+            </div>
+            
+            <h3>Justificación</h3>
+            <p>Para un proyecto móvil típico, Scrum es una excelente opción inicial por su simplicidad y estructura. Sin embargo, si la prioridad es la calidad técnica y la adaptabilidad extrema, XP es superior. Si el proyecto es muy complejo y específico para móviles con grandes desafíos de hardware y testing, Mobile-D ofrece un marco especializado. La elección final depende de la naturaleza del proyecto, el equipo y los riesgos identificados.</p>
+        </div>
+        
+        <div class="content" id="seccion2">
+            <h2>Sección 2. Seleccionar una metodología ágil para el proceso de desarrollo Móvil</h2>
+            <p><strong>(Metodología Seleccionada: Scrum)</strong></p>
+            
+            <h3>4. Características Principales de Scrum</h3>
+            
+            <h4>Roles Definidos:</h4>
+            <ul>
+                <li><strong>Product Owner:</strong> Representa al cliente/stakeholders, gestiona el Backlog y maximiza el valor del producto.</li>
+                <li><strong>Scrum Master:</strong> Facilita el proceso, elimina impedimentos y asegura que el equipo siga los principios de Scrum.</li>
+                <li><strong>Equipo de Desarrollo:</strong> Grupo multifuncional y autoorganizado que realiza el trabajo de entregar el incremento de software.</li>
+            </ul>
+            
+            <h4>Eventos (Ceremonias) Time-boxed:</h4>
+            <ul>
+                <li><strong>Sprint:</strong> Iteración de tiempo fijo (normalmente 2-4 semanas) donde se crea un incremento de producto potencialmente entregable.</li>
+                <li><strong>Sprint Planning:</strong> Planificación del trabajo a realizar en el Sprint.</li>
+                <li><strong>Daily Scrum:</strong> Reunión diaria de 15 minutos para sincronizar actividades.</li>
+                <li><strong>Sprint Review:</strong> Inspección del incremento y adaptación del Product Backlog.</li>
+                <li><strong>Sprint Retrospective:</strong> Reflexión del equipo sobre cómo mejorar su proceso.</li>
+            </ul>
+            
+            <h4>Artefactos:</h4>
+            <ul>
+                <li><strong>Product Backlog:</strong> Lista priorizada de todo lo que se necesita en el producto.</li>
+                <li><strong>Sprint Backlog:</strong> Conjunto de elementos del Product Backlog seleccionados para el Sprint.</li>
+                <li><strong>Incremento:</strong> Suma de todos los elementos del Product Backlog completados durante un Sprint.</li>
+            </ul>
+            
+            <h3>5. Cuándo es Recomendable Utilizar Scrum</h3>
+            <p>Scrum es recomendable cuando:</p>
+            <ul>
+                <li>Los requisitos del proyecto cambian o evolucionan rápidamente.</li>
+                <li>El problema a resolver es complejo y no se conoce la solución completa de antemano.</li>
+                <li>Se necesita entregar valor al cliente de forma temprana y continua.</li>
+                <li>Se cuenta con un equipo comprometido, multifuncional y capaz de auto-organizarse.</li>
+                <li>El cliente o stakeholder desea estar involucrado y proporcionar feedback frecuente.</li>
+            </ul>
+            
+            <div class="scrum-diagram">
+                <h3>Gráfico SCRUM:</h3>
+                <!-- Imagen de diagrama SCRUM -->
+                <img src="imagen6.png" alt="Diagrama SCRUM">
+            </div>
+        </div>
+        
+        <div class="content" id="seccion3">
+            <h2>SECCIÓN 3: PLAN DE DESARROLLO DE PROYECTO MÓVIL</h2>
+            
+            <h3>1. Nombre del Proyecto</h3>
+            <p>CocinaFácil<br>Tu recetario inteligente</p>
+            
+            <h3>2. Visión del Proyecto</h3>
+            <p>Desarrollar una aplicación móvil intuitiva que resuelva el dilema diario de "¿qué cocino?" al permitir a los usuarios ingresar los ingredientes que tienen disponibles y recibir sugerencias de recetas precisas y personalizables. La app busca reducir el desperdicio de comida, ahorrar dinero y tiempo, y hacer de la cocina una experiencia más accesible y divertida.</p>
+            
+            <h3>3. Integrantes de Equipo</h3>
+            <ul>
+                <li>Miguel Angel Anastasio Nava - Product Owner / Diseñadora UX/UI</li>
+                <li>Miguel Angel Anastasio Nava - Desarrollador Backend</li>
+                <li>Filiberto Navarro Grifaldo - Desarrollador Flutter / Tester</li>
+            </ul>
+            
+            <h3>4. Justificación de la Metodología</h3>
+            <p>Se utilizará Scrum debido a:</p>
+            <ul>
+                <li>La necesidad de entregar funcionalidades de valor incremental y obtener feedback rápido de usuarios potenciales.</li>
+                <li>La capacidad de adaptar el plan fácilmente basado en qué características (como el escaneo por OCR o los filtros dietéticos) tienen mayor prioridad después de los primeros sprints.</li>
+                <li>Fomenta la colaboración constante en un equipo con roles multifuncionales.</li>
+            </ul>
+            
+            <h3>5. Arquitectura de la Aplicación Móvil</h3>
+            <p>Clean Architecture + BLoC (o Provider)</p>
+            <ul>
+                <li><strong>Capa de Presentación:</strong> Widgets de Flutter manejados por BLoC para un control de estado predecible y fácil de testear.</li>
+                <li><strong>Capa de Dominio:</strong> Contiene las entidades (Recipe, Ingredient) y los casos de uso (GetRecipesByIngredients, GetRandomRecipe).</li>
+                <li><strong>Capa de Datos:</strong> Implementa repositorios que deciden si obtener los datos de una fuente local (SQLite) o remota (API Spoonacular en un futuro).</li>
+            </ul>
+            
+            <h3>6. Framework de Desarrollo</h3>
+            <p><strong>Flutter</strong></p>
+            <ul>
+                <li>Desarrollo nativo multiplataforma (iOS y Android) desde un solo código base.</li>
+                <li>Rica ecosystema de paquetes para funcionalidades clave (cámara, base de datos, HTTP).</li>
+                <li>Hot reload para una iteración rápida en el diseño de la UI.</li>
+            </ul>
+            
+            <h3>7. Patrón de Diseño</h3>
+            <ul>
+                <li><strong>Repository Pattern:</strong> Para abstractar el origen de los datos (local vs. remoto). El resto de la app depende de abstracciones, no de implementaciones concretas.</li>
+                <li><strong>BLoC Pattern:</strong> Para manejar todo el estado de la aplicación de manera reactiva y organizada.</li>
+            </ul>
+            
+            <h3>8. Plan de Desarrollo (Sprints)</h3>
+            <div class="sprints-grid">
+                <div class="sprint-card">
+                    <h4>Sprint 0 (Inicialización)</h4>
+                    <p>Configuración del entorno, repositorio Git, y definición de la arquitectura. Creación de un conjunto inicial de 50 recetas en un archivo JSON local.</p>
+                </div>
+                
+                <div class="sprint-card">
+                    <h4>Sprint 1 (MVP - Búsqueda Básica)</h4>
+                    <p>Pantalla de ingreso de ingredientes (con chips). Lógica de búsqueda y filtrado en la lista local de recetas. Pantalla de resultados y de detalle de receta básica.</p>
+                </div>
+                
+                <div class="sprint-card">
+                    <h4>Sprint 2 (Core Features)</h4>
+                    <p>Implementación de la base de datos local SQLite para almacenar recetas y favoritos. Funcionalidad completa de "Favoritos". Mejora del UI/UX.</p>
+                </div>
+                
+                <div class="sprint-card">
+                    <h4>Sprint 3 (Búsqueda Inteligente)</h4>
+                    <p>Implementación de la lógica para recetas exactas y parciales (indicando los ingredientes faltantes). Agregar modo "Aleatorio".</p>
+                </div>
+                
+                <div class="sprint-card">
+                    <h4>Sprint 4 (Funcionalidades Avanzadas Opcionales)</h4>
+                    <p>Integración con la cámara y OCR (Google ML Kit) para escanear ingredientes. Implementación de filtros dietéticos (vegano, sin gluten, etc.).</p>
+                </div>
+                
+                <div class="sprint-card">
+                    <h4>Sprint 5 (Pulido y Despliegue)</h4>
+                    <p>Pruebas exhaustivas, optimización de performance, y preparación para el despliegue en Google Play Store.</p>
+                </div>
+            </div>
+            
+            <h3>9. Estrategias de Prueba</h3>
+            <ul>
+                <li><strong>Pruebas Unitarias:</strong> Para los casos de uso, BLoCs y modelos de datos. (paquete test).</li>
+                <li><strong>Pruebas Widget:</strong> Para verificar que los widgets se construyen correctamente y reaccionan a los estados del BLoC.</li>
+                <li><strong>Pruebas de Integración:</strong> Para flujos de usuario completos, como "ingresar ingredientes -> ver lista -> ver detalle -> agregar a favoritos".</li>
+                <li><strong>Pruebas Manuales:</strong> En diferentes dispositivos y tamaños de pantalla.</li>
+            </ul>
+            
+            <h3>10. Estrategias de Versionamiento</h3>
+            <ul>
+                <li><strong>Herramienta:</strong> Git con repositorio en GitHub.</li>
+                <li><strong>Estrategia de Ramas:</strong> GitHub Flow (simplificado para un equipo pequeño).</li>
+                <li><strong>main:</strong> Siempre estable y listo para producción.</li>
+                <li><strong>develop:</strong> Rama de integración principal.</li>
+                <li><strong>feature/:</strong> Ramas para nuevas funcionalidades, creadas desde develop.</li>
+                <li><strong>Convención de Commits:</strong> Conventional Commits (feat:, fix:, chore:, docs:).</li>
+            </ul>
+            
+            <h3>11. Conclusión</h3>
+            <p>"CocinaFácil" es un proyecto con un propósito claro y un mercado objetivo muy amplio. La elección de Flutter y una arquitectura limpia y bien definida (Clean + BLoC) asegura un código mantenible, escalable y fácil de testear. Comenzar con una base de datos local permite un MVP rápido y funcional, con un camino claro para escalar en el futuro integrando una API externa como Spoonacular para ampliar el catálogo de recetas de manera casi infinita. Este proyecto no solo cumple con los requisitos académicos, sino que resulta en un producto tangible y útil.</p>
+        </div>
+        
+        <div class="content" id="seccion4">
+            <h2>Sección 4. Desarrollar Aplicación con el Framework</h2>
+            
+            <h3>El objetivo</h3>
+            <p>Crear un plan de desarrollo ágil y robusto para "CocinaFácil" que sirva como guía para transformar la idea en un producto funcional. El plan debe optimizar los recursos del equipo, gestionar eficazmente los cambios y asegurar la entrega constante de valor al usuario final mediante funcionalidades bien priorizadas y de alta calidad.</p>
+            
+            <h3>Breve resumen del proceso</h3>
+            <p>El desarrollo de "CocinaFácil" seguirá un enfoque ágil estructurado en sprints consecutivos. Iniciaremos con la configuración del entorno y la arquitectura base (Sprint 0), seguido de la implementación del núcleo funcional de búsqueda de recetas (Sprint 1). Los sprints posteriores incorporarán progresivamente: sistema de persistencia de datos y favoritos (Sprint 2), algoritmos de matching de ingredientes y modo aleatorio (Sprint 3), funcionalidades avanzadas de escaneo OCR (Sprint 4), y finalizaremos con optimización y preparación para despliegue (Sprint 5). Cada iteración incluirá ceremonias ágiles de planificación, revisión y retrospectiva para garantizar la mejora continua.</p>
+            
+            <h3>Pantallas resultantes</h3>
+            <div class="screenshots">
+                <div class="screenshot">
+                    <img src="imagen1.png" alt="Pantalla 1 de la aplicación">
+                </div>
+                <div class="screenshot">
+                    <img src="imagen2.png" alt="Pantalla 2 de la aplicación">
+                </div>
+                <div class="screenshot">
+                    <img src="imagen3.png" alt="Pantalla 3 de la aplicación">
+                </div>
+                <div class="screenshot">
+                    <img src="imagen4.png" alt="Pantalla 4 de la aplicación">
+                </div>
+                <div class="screenshot">
+                    <img src="imagen5.png" alt="Pantalla 5 de la aplicación">
+                </div>
+            </div>
+        </div>
+
+        <!-- Galería de imágenes de cocina -->
+        <div class="content" id="galeria">
+            <h2>Galería Culinaria</h2>
+            <p>Inspiración visual para la aplicación CocinaFácil - imágenes que representan la esencia de la cocina creativa y saludable.</p>
+            
+            <div class="cooking-gallery">
+                <div class="cooking-image">
+                    <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Comida saludable">
+                    <p>Comida saludable y balanceada</p>
+                </div>
+                
+                <div class="cooking-image">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Ingredientes frescos">
+                    <p>Ingredientes frescos para cocinar</p>
+                </div>
+                
+                <div class="cooking-image">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Plato terminado">
+                    <p>Plato terminado y presentado</p>
+                </div>
+                
+                <div class="cooking-image">
+                    <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Cocina casera">
+                    <p>Cocina casera tradicional</p>
+                </div>
+                
+                <div class="cooking-image">
+                    <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Recetas internacionales">
+                    <p>Recetas de cocina internacional</p>
+                </div>
+                
+                <div class="cooking-image">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Cena familiar">
+                    <p>Cena familiar saludable</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información académica al final -->
+        <div class="academic-info">
+            <h2>Información Académica</h2>
+            <div class="academic-details">
+                <div class="academic-section">
+                    <h3>Datos de la Institución</h3>
+                    <p><strong>Universidad:</strong> Universidad Tecnológica de la Mixteca</p>
+                    <p><strong>Carrera:</strong> Ingeniería en Computación</p>
+                    <p><strong>Materia:</strong> Desarrollo Móvil</p>
+                    <p><strong>Grupo:</strong> [Grupo]</p>
+                </div>
+                
+                <div class="academic-section">
+                    <h3>Datos del Docente</h3>
+                    <p><strong>Nombre:</strong> Anastacio Rodriguez Garcia</p>
+                    <p><strong>Asignatura:</strong> Desarrollo Móvil</p>
+                </div>
+                
+                <div class="academic-section">
+                    <h3>Integrantes del Equipo</h3>
+                    <ul>
+                        <li>Miguel Angel Anastasio Nava - Product Owner / Diseñador UX/UI</li>
+                        <li>Miguel Angel Anastasio Nava - Desarrollador Backend</li>
+                        <li>Filiberto Navarro Grifaldo - Desarrollador Flutter / Tester</li>
+                    </ul>
+                </div>
+                
+                <div class="academic-section">
+                    <h3>Datos del Proyecto</h3>
+                    <p><strong>Proyecto:</strong> CocinaFácil - Tu recetario inteligente</p>
+                    <p><strong>Fecha de entrega:</strong> [Fecha de entrega]</p>
+                    <p><strong>Metodología:</strong> Scrum</p>
+                    <p><strong>Framework:</strong> Flutter</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>Proyecto CocinaFácil - Desarrollo Móvil con Metodologías Ágiles</p>
+            <p>© 2023 - Todos los derechos reservados</p>
+        </div>
+    </footer>
+</body>
+</html>
