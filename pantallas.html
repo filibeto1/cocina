@@ -9,6 +9,7 @@
             --primary-color: #2c3e50;
             --secondary-color: #3498db;
             --accent-color: #e74c3c;
+            --success-color: #27ae60;
             --light-color: #ecf0f1;
             --dark-color: #2c3e50;
             --text-color: #333;
@@ -119,6 +120,32 @@
             font-weight: 500;
         }
 
+        .user-type-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+
+        .user-type-tab {
+            padding: 12px 30px;
+            background: white;
+            border: 2px solid var(--secondary-color);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .user-type-tab.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .user-type-tab:hover:not(.active) {
+            background: var(--light-color);
+        }
+
         .flow-container {
             display: flex;
             flex-direction: column;
@@ -147,6 +174,10 @@
             border: 3px solid var(--primary-color);
         }
 
+        .phone-mockup.admin {
+            border-color: var(--accent-color);
+        }
+
         .phone-notch {
             position: absolute;
             top: 0;
@@ -158,6 +189,10 @@
             border-bottom-left-radius: 15px;
             border-bottom-right-radius: 15px;
             z-index: 10;
+        }
+
+        .phone-notch.admin {
+            background: var(--accent-color);
         }
 
         .screen {
@@ -197,6 +232,10 @@
             justify-content: center;
             color: white;
             font-weight: bold;
+        }
+
+        .app-icon.admin {
+            background: var(--accent-color);
         }
 
         .search-bar {
@@ -482,6 +521,10 @@
             border-bottom: 3px solid var(--secondary-color);
         }
 
+        .screen-name.admin {
+            border-bottom-color: var(--accent-color);
+        }
+
         .screen-description {
             font-size: 1.1rem;
             color: #555;
@@ -495,6 +538,10 @@
             border-radius: var(--border-radius);
             margin-bottom: 20px;
             border-left: 4px solid var(--secondary-color);
+        }
+
+        .functionality.admin {
+            border-left-color: var(--accent-color);
         }
 
         .functionality h3 {
@@ -676,6 +723,87 @@
             font-weight: bold;
         }
 
+        /* ADMIN STYLES */
+        .admin-badge {
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: var(--light-color);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .user-list, .recipe-list {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+            margin-bottom: 15px;
+        }
+
+        .user-item, .recipe-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-item:last-child, .recipe-item:last-child {
+            border-bottom: none;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .btn-edit {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .btn-delete {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
         @media (max-width: 1100px) {
             .screen-section {
                 flex-direction: column;
@@ -719,6 +847,25 @@
             .service-card {
                 padding: 20px;
             }
+
+            .user-type-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .user-type-tab {
+                width: 200px;
+                text-align: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Hide admin sections by default */
+        .admin-section {
+            display: none;
         }
     </style>
 </head>
@@ -744,7 +891,14 @@
             <p class="subtitle">Cómo funciona cada pantalla y cuál es la siguiente en el flujo de la aplicación</p>
         </header>
 
-        <div class="flow-container">
+        <!-- Tabs para cambiar entre usuario normal y admin -->
+        <div class="user-type-tabs">
+            <div class="user-type-tab active" onclick="showUserType('normal')">👤 Usuario Normal</div>
+            <div class="user-type-tab" onclick="showUserType('admin')">👑 Administrador</div>
+        </div>
+
+        <!-- SECCIÓN USUARIO NORMAL -->
+        <div id="normal-user" class="flow-container">
             <!-- Pantalla 1: Búsqueda de ingredientes -->
             <div class="screen-section">
                 <div class="phone-mockup">
@@ -897,7 +1051,7 @@
                             <li>Lista de recetas filtradas por ingredientes disponibles</li>
                             <li>Información clave: tiempo de preparación, porciones y calificación</li>
                             <li>Botón para agregar recetas a favoritos</li>
-                            <li>Acceso rápido al detalle completo de cada receta</li>
+                            <li>Acceso rápido al detalle de cada receta</li>
                             <li>Indicador del número total de recetas encontradas</li>
                         </ul>
                     </div>
@@ -982,167 +1136,276 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="navigation-flow">↓</div>
+        </div>
 
-            <!-- Pantalla 4: Favoritos -->
-            <div class="screen-section reverse">
-                <div class="phone-mockup">
-                    <div class="phone-notch"></div>
+        <!-- SECCIÓN ADMINISTRADOR -->
+        <div id="admin-user" class="flow-container admin-section">
+            <!-- Pantalla 1: Dashboard Admin -->
+            <div class="screen-section">
+                <div class="phone-mockup admin">
+                    <div class="phone-notch admin"></div>
                     <div class="screen">
                         <div class="screen-content">
                             <div class="app-bar">
-                                <div class="app-title">Mis Favoritos</div>
-                                <div class="app-icon">CF</div>
+                                <div class="app-title">Panel Admin <span class="admin-badge">ADMIN</span></div>
+                                <div class="app-icon admin">CF</div>
                             </div>
                             
-                            <p style="margin-bottom: 15px; color: #666;">Tus recetas guardadas</p>
+                            <h2 style="margin-bottom: 15px; color: var(--primary-color);">Dashboard</h2>
                             
-                            <div class="recipe-card">
-                                <div class="recipe-image">Pasta</div>
-                                <div class="recipe-content">
-                                    <div class="recipe-title">Pasta Alfredo</div>
-                                    <div class="recipe-meta">
-                                        <span>⏱️ 20 min</span>
-                                        <span>👥 2 personas</span>
-                                        <span>⭐ 4.8</span>
-                                    </div>
-                                    <div class="recipe-ingredients">Ingredientes: Pasta, crema, queso parmesano, ajo</div>
-                                    <div class="recipe-actions">
-                                        <button class="action-button">🗑️ Eliminar</button>
-                                        <button class="action-button">👁️ Ver</button>
-                                    </div>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-number">1,248</div>
+                                    <div class="stat-label">Usuarios</div>
                                 </div>
-                            </div>
-                            
-                            <div class="recipe-card">
-                                <div class="recipe-image">Postre</div>
-                                <div class="recipe-content">
-                                    <div class="recipe-title">Flan de Vainilla</div>
-                                    <div class="recipe-meta">
-                                        <span>⏱️ 60 min</span>
-                                        <span>👥 6 personas</span>
-                                        <span>⭐ 4.9</span>
-                                    </div>
-                                    <div class="recipe-ingredients">Ingredientes: Huevos, leche, azúcar, vainilla</div>
-                                    <div class="recipe-actions">
-                                        <button class="action-button">🗑️ Eliminar</button>
-                                        <button class="action-button">👁️ Ver</button>
-                                    </div>
+                                <div class="stat-card">
+                                    <div class="stat-number">356</div>
+                                    <div class="stat-label">Recetas</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number">89%</div>
+                                    <div class="stat-label">Satisfacción</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-number">2,847</div>
+                                    <div class="stat-label">Búsquedas</div>
                                 </div>
                             </div>
                             
-                            <div class="tab-bar">
-                                <div class="tab-item">
-                                    <div class="tab-icon">🔍</div>
-                                    <div>Buscar</div>
+                            <div class="section-title">Usuarios Recientes</div>
+                            <div class="user-list">
+                                <div class="user-item">
+                                    <div>María González</div>
+                                    <div class="admin-actions">
+                                        <button class="btn-edit">Editar</button>
+                                        <button class="btn-delete">Eliminar</button>
+                                    </div>
                                 </div>
-                                <div class="tab-item active">
-                                    <div class="tab-icon">❤️</div>
-                                    <div>Favoritos</div>
+                                <div class="user-item">
+                                    <div>Carlos López</div>
+                                    <div class="admin-actions">
+                                        <button class="btn-edit">Editar</button>
+                                        <button class="btn-delete">Eliminar</button>
+                                    </div>
                                 </div>
-                                <div class="tab-item">
-                                    <div class="tab-icon">⚙️</div>
-                                    <div>Ajustes</div>
+                                <div class="user-item">
+                                    <div>Ana Martínez</div>
+                                    <div class="admin-actions">
+                                        <button class="btn-edit">Editar</button>
+                                        <button class="btn-delete">Eliminar</button>
+                                    </div>
                                 </div>
+                            </div>
+                            
+                            <div style="margin-top: auto; text-align: center; padding: 15px 0;">
+                                <button style="background: var(--accent-color); color: white; border: none; border-radius: var(--border-radius); padding: 12px 30px; font-size: 1rem; cursor: pointer; margin: 5px;">Gestionar Recetas</button>
+                                <button style="background: var(--secondary-color); color: white; border: none; border-radius: var(--border-radius); padding: 12px 30px; font-size: 1rem; cursor: pointer; margin: 5px;">Gestionar Usuarios</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="screen-info">
-                    <div class="screen-name">Recetas Favoritas</div>
+                    <div class="screen-name admin">Dashboard Administrador</div>
                     <div class="screen-description">
-                        Almacena todas las recetas que el usuario ha marcado como favoritas para acceso rápido. Es una colección personalizada de las recetas que más le gustan al usuario.
+                        Panel de control principal para administradores con estadísticas clave, gestión de usuarios y recetas, y acceso rápido a las funciones administrativas más importantes.
                     </div>
                     
-                    <div class="functionality">
+                    <div class="functionality admin">
                         <h3>Funcionalidades</h3>
                         <ul>
-                            <li>Lista de todas las recetas marcadas como favoritas</li>
-                            <li>Posibilidad de eliminar recetas de favoritos</li>
-                            <li>Acceso rápido al detalle de cada receta favorita</li>
-                            <li>Visualización similar a la pantalla de resultados</li>
-                            <li>Mensaje cuando no hay recetas favoritas</li>
+                            <li>Estadísticas generales de la aplicación</li>
+                            <li>Vista de usuarios recientes</li>
+                            <li>Acceso rápido a gestión de recetas</li>
+                            <li>Acceso rápido a gestión de usuarios</li>
+                            <li>Métricas de uso y satisfacción</li>
+                            <li>Herramientas de moderación</li>
                         </ul>
                     </div>
                     
                     <div class="next-screen">
                         <h3>Siguiente Pantalla</h3>
-                        <p>Al presionar "Ver" en cualquier receta favorita, la aplicación navega a la <strong>Pantalla de Detalle de Receta</strong> correspondiente. Desde aquí también se puede volver a la pantalla de búsqueda mediante la navegación inferior.</p>
+                        <p>Al presionar "Gestionar Recetas", la aplicación navega a la <strong>Pantalla de Gestión de Recetas</strong>. Al presionar "Gestionar Usuarios", navega a la <strong>Pantalla de Gestión de Usuarios</strong>.</p>
                     </div>
                 </div>
             </div>
             
             <div class="navigation-flow">↓</div>
 
-            <!-- Pantalla 5: Escaneo de ingredientes -->
-            <div class="screen-section">
-                <div class="phone-mockup">
-                    <div class="phone-notch"></div>
+            <!-- Pantalla 2: Gestión de Recetas -->
+            <div class="screen-section reverse">
+                <div class="phone-mockup admin">
+                    <div class="phone-notch admin"></div>
                     <div class="screen">
                         <div class="screen-content">
                             <div class="app-bar">
-                                <div class="app-title">Escanear</div>
-                                <div class="app-icon">CF</div>
+                                <div class="app-title">Gestión Recetas <span class="admin-badge">ADMIN</span></div>
+                                <div class="app-icon admin">CF</div>
                             </div>
                             
-                            <div style="text-align: center; margin: 30px 0;">
-                                <div style="width: 200px; height: 200px; border: 3px dashed var(--secondary-color); border-radius: 10px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: var(--secondary-color); font-size: 3rem;">
-                                    📷
-                                </div>
-                                <h3 style="margin-bottom: 10px; color: var(--primary-color);">Escanea tus ingredientes</h3>
-                                <p style="color: #666; margin-bottom: 20px;">Apunta con la cámara a los ingredientes que tienes disponibles</p>
-                                <button style="background: var(--secondary-color); color: white; border: none; border-radius: var(--border-radius); padding: 12px 30px; font-size: 1rem; cursor: pointer;">Iniciar Escaneo</button>
+                            <div class="search-bar">
+                                <input type="text" class="search-input" placeholder="Buscar recetas...">
+                                <button class="search-button">Buscar</button>
                             </div>
                             
-                            <div style="margin-top: auto;">
-                                <div class="section-title">Ingredientes detectados</div>
-                                <div class="chips-container">
-                                    <div class="chip">Tomate <span class="chip-close">×</span></div>
-                                    <div class="chip">Cebolla <span class="chip-close">×</span></div>
-                                    <div class="chip">Zanahoria <span class="chip-close">×</span></div>
+                            <div style="text-align: center; margin: 10px 0;">
+                                <button style="background: var(--success-color); color: white; border: none; border-radius: var(--border-radius); padding: 10px 20px; font-size: 1rem; cursor: pointer;">+ Nueva Receta</button>
+                            </div>
+                            
+                            <div class="recipe-list">
+                                <div class="recipe-item">
+                                    <div>
+                                        <div style="font-weight: bold;">Pollo con Arroz</div>
+                                        <div style="font-size: 0.8rem; color: #666;">Creado: 15/03/2024</div>
+                                    </div>
+                                    <div class="admin-actions">
+                                        <button class="btn-edit">Editar</button>
+                                        <button class="btn-delete">Eliminar</button>
+                                    </div>
+                                </div>
+                                <div class="recipe-item">
+                                    <div>
+                                        <div style="font-weight: bold;">Ensalada Mediterránea</div>
+                                        <div style="font-size: 0.8rem; color: #666;">Creado: 14/03/2024</div>
+                                    </div>
+                                    <div class="admin-actions">
+                                        <button class="btn-edit">Editar</button>
+                                        <button class="btn-delete">Eliminar</button>
+                                    </div>
+                                </div>
+                                <div class="recipe-item">
+                                    <div>
+                                        <div style="font-weight: bold;">Pasta Alfredo</div>
+                                        <div style="font-size: 0.8rem; color: #666;">Creado: 13/03/2024</div>
+                                    </div>
+                                    <div class="admin-actions">
+                                        <button class="btn-edit">Editar</button>
+                                        <button class="btn-delete">Eliminar</button>
+                                    </div>
                                 </div>
                             </div>
                             
-                            <div class="tab-bar">
-                                <div class="tab-item">
-                                    <div class="tab-icon">🔍</div>
-                                    <div>Buscar</div>
-                                </div>
-                                <div class="tab-item">
-                                    <div class="tab-icon">📋</div>
-                                    <div>Recetas</div>
-                                </div>
-                                <div class="tab-item active">
-                                    <div class="tab-icon">📷</div>
-                                    <div>Escanear</div>
-                                </div>
+                            <div style="margin-top: auto; text-align: center; padding: 10px 0;">
+                                <button style="background: var(--accent-color); color: white; border: none; border-radius: var(--border-radius); padding: 10px 20px; font-size: 1rem; cursor: pointer;">← Volver al Dashboard</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="screen-info">
-                    <div class="screen-name">Escaneo OCR</div>
+                    <div class="screen-name admin">Gestión de Recetas</div>
                     <div class="screen-description">
-                        Permite a los usuarios escanear ingredientes usando la cámara del dispositivo. Utiliza tecnología de reconocimiento óptico de caracteres (OCR) para identificar automáticamente los ingredientes y agregarlos a la búsqueda.
+                        Interfaz completa para administrar el catálogo de recetas. Permite crear, editar, eliminar y buscar recetas en la base de datos de la aplicación.
                     </div>
                     
-                    <div class="functionality">
+                    <div class="functionality admin">
                         <h3>Funcionalidades</h3>
                         <ul>
-                            <li>Activación de cámara para escanear ingredientes</li>
-                            <li>Reconocimiento automático de texto en etiquetas de productos</li>
-                            <li>Visualización de ingredientes detectados como chips</li>
-                            <li>Posibilidad de eliminar ingredientes incorrectos</li>
-                            <li>Integración con la base de datos de ingredientes de la app</li>
+                            <li>Búsqueda y filtrado de recetas</li>
+                            <li>Creación de nuevas recetas</li>
+                            <li>Edición de recetas existentes</li>
+                            <li>Eliminación de recetas</li>
+                            <li>Visualización de metadatos de recetas</li>
+                            <li>Gestión de categorías e ingredientes</li>
                         </ul>
                     </div>
                     
                     <div class="next-screen">
                         <h3>Siguiente Pantalla</h3>
-                        <p>Una vez escaneados los ingredientes, al presionar "Buscar Recetas" (no visible en esta pantalla pero disponible después del escaneo), la aplicación navega a la <strong>Pantalla de Resultados</strong> con las recetas que coinciden con los ingredientes detectados.</p>
+                        <p>Al presionar "Editar" en cualquier receta, la aplicación navega a la <strong>Pantalla de Edición de Receta</strong>. Al presionar "Nueva Receta", navega al <strong>Formulario de Creación de Receta</strong>.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation-flow">↓</div>
+
+            <!-- Pantalla 3: Gestión de Usuarios -->
+            <div class="screen-section">
+                <div class="phone-mockup admin">
+                    <div class="phone-notch admin"></div>
+                    <div class="screen">
+                        <div class="screen-content">
+                            <div class="app-bar">
+                                <div class="app-title">Gestión Usuarios <span class="admin-badge">ADMIN</span></div>
+                                <div class="app-icon admin">CF</div>
+                            </div>
+                            
+                            <div class="search-bar">
+                                <input type="text" class="search-input" placeholder="Buscar usuarios...">
+                                <button class="search-button">Buscar</button>
+                            </div>
+                            
+                            <div class="user-list" style="max-height: 300px;">
+                                <div class="user-item">
+                                    <div>
+                                        <div style="font-weight: bold;">María González</div>
+                                        <div style="font-size: 0.8rem; color: #666;">maria@email.com • Registro: 10/03/2024</div>
+                                    </div>
+                                    <div class="admin-actions">
+                                        <button class="btn-edit">Editar</button>
+                                        <button class="btn-delete">Eliminar</button>
+                                    </div>
+                                </div>
+                                <div class="user-item">
+                                    <div>
+                                        <div style="font-weight: bold;">Carlos López</div>
+                                        <div style="font-size: 0.8rem; color: #666;">carlos@email.com • Registro: 08/03/2024</div>
+                                    </div>
+                                    <div class="admin-actions">
+                                        <button class="btn-edit">Editar</button>
+                                        <button class="btn-delete">Eliminar</button>
+                                    </div>
+                                </div>
+                                <div class="user-item">
+                                    <div>
+                                        <div style="font-weight: bold;">Ana Martínez</div>
+                                        <div style="font-size: 0.8rem; color: #666;">ana@email.com • Registro: 05/03/2024</div>
+                                    </div>
+                                    <div class="admin-actions">
+                                        <button class="btn-edit">Editar</button>
+                                        <button class="btn-delete">Eliminar</button>
+                                    </div>
+                                </div>
+                                <div class="user-item">
+                                    <div>
+                                        <div style="font-weight: bold;">Pedro Sánchez</div>
+                                        <div style="font-size: 0.8rem; color: #666;">pedro@email.com • Registro: 01/03/2024</div>
+                                    </div>
+                                    <div class="admin-actions">
+                                        <button class="btn-edit">Editar</button>
+                                        <button class="btn-delete">Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: auto; text-align: center; padding: 10px 0;">
+                                <button style="background: var(--accent-color); color: white; border: none; border-radius: var(--border-radius); padding: 10px 20px; font-size: 1rem; cursor: pointer;">← Volver al Dashboard</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="screen-info">
+                    <div class="screen-name admin">Gestión de Usuarios</div>
+                    <div class="screen-description">
+                        Panel para administrar los usuarios registrados en la aplicación. Permite ver información de usuarios, editar perfiles y gestionar permisos de acceso.
+                    </div>
+                    
+                    <div class="functionality admin">
+                        <h3>Funcionalidades</h3>
+                        <ul>
+                            <li>Búsqueda y filtrado de usuarios</li>
+                            <li>Visualización de información de usuarios</li>
+                            <li>Edición de perfiles de usuario</li>
+                            <li>Eliminación de cuentas de usuario</li>
+                            <li>Gestión de roles y permisos</li>
+                            <li>Visualización de actividad de usuarios</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="next-screen">
+                        <h3>Siguiente Pantalla</h3>
+                        <p>Al presionar "Editar" en cualquier usuario, la aplicación navega a la <strong>Pantalla de Edición de Usuario</strong> con opciones avanzadas de gestión.</p>
                     </div>
                 </div>
             </div>
@@ -1231,5 +1494,29 @@
             </a>
         </div>
     </div>
+
+    <script>
+        function showUserType(type) {
+            // Update tabs
+            document.querySelectorAll('.user-type-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            if (type === 'normal') {
+                document.querySelector('.user-type-tab:nth-child(1)').classList.add('active');
+                document.getElementById('normal-user').style.display = 'flex';
+                document.getElementById('admin-user').style.display = 'none';
+            } else {
+                document.querySelector('.user-type-tab:nth-child(2)').classList.add('active');
+                document.getElementById('normal-user').style.display = 'none';
+                document.getElementById('admin-user').style.display = 'flex';
+            }
+        }
+
+        // Initialize with normal user view
+        document.addEventListener('DOMContentLoaded', function() {
+            showUserType('normal');
+        });
+    </script>
 </body>
 </html>
