@@ -546,6 +546,136 @@
             font-weight: bold;
         }
 
+        /* SERVICIOS SECTION */
+        .services-section {
+            margin: 60px 0;
+            padding: 40px 0;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .services-header h2 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .services-header p {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e9ecef;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .service-description {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .service-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-features li:before {
+            content: "✓";
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .service-link {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            text-align: center;
+            width: 100%;
+        }
+
+        .service-link:hover {
+            background: var(--primary-color);
+        }
+
+        .free-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
         @media (max-width: 1100px) {
             .screen-section {
                 flex-direction: column;
@@ -579,6 +709,15 @@
             
             .nav-title {
                 font-size: 1.2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                padding: 0 15px;
+            }
+            
+            .service-card {
+                padding: 20px;
             }
         }
     </style>
@@ -1008,6 +1147,82 @@
                 </div>
             </div>
         </div>
+        
+        <!-- SECCIÓN DE SERVICIOS Y APIS -->
+        <section class="services-section">
+            <div class="services-header">
+                <h2>Servicios y APIs</h2>
+                <p>Tecnologías que potencian CocinaFácil</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- TheMealDB -->
+                <div class="service-card">
+                    <div class="free-badge">GRATUITO</div>
+                    <div class="service-icon">🍽️</div>
+                    <h2 class="service-title">TheMealDB API</h2>
+                    <p class="service-description">
+                        Base de datos completa de recetas internacionales con información detallada 
+                        sobre ingredientes, instrucciones e imágenes.
+                    </p>
+                    <ul class="service-features">
+                        <li>+300 recetas internacionales</li>
+                        <li>Búsqueda por ingredientes</li>
+                        <li>Instrucciones paso a paso</li>
+                        <li>Imágenes de alta calidad</li>
+                        <li>Categorías y áreas culinarias</li>
+                        <li>Sin límites de uso</li>
+                    </ul>
+                    <a href="https://www.themealdb.com/api.php" target="_blank" class="service-link">
+                        Visitar TheMealDB
+                    </a>
+                </div>
+
+                <!-- Open Food Facts -->
+                <div class="service-card">
+                    <div class="free-badge">GRATUITO</div>
+                    <div class="service-icon">🏷️</div>
+                    <h2 class="service-title">Open Food Facts</h2>
+                    <p class="service-description">
+                        Base de datos colaborativa de productos alimenticios con información 
+                        nutricional, ingredientes y alérgenos.
+                    </p>
+                    <ul class="service-features">
+                        <li>+2 millones de productos</li>
+                        <li>Información nutricional detallada</li>
+                        <li>Detección de alérgenos</li>
+                        <li>Escaneo de códigos de barras</li>
+                        <li>Datos de ingredientes</li>
+                        <li>API completamente abierta</li>
+                    </ul>
+                    <a href="https://world.openfoodfacts.org/data" target="_blank" class="service-link">
+                        Visitar Open Food Facts
+                    </a>
+                </div>
+
+                <!-- MongoDB Atlas -->
+                <div class="service-card">
+                    <div class="free-badge">TIER FREE</div>
+                    <div class="service-icon">🗄️</div>
+                    <h2 class="service-title">MongoDB Atlas</h2>
+                    <p class="service-description">
+                        Base de datos en la nube para almacenar datos de usuarios, recetas 
+                        personalizadas y preferencias culinarias.
+                    </p>
+                    <ul class="service-features">
+                        <li>512 MB de almacenamiento gratis</li>
+                        <li>Base de datos compartida</li>
+                        <li>Backups automáticos</li>
+                        <li>Escalado automático</li>
+                        <li>Alta disponibilidad</li>
+                        <li>Seguridad integrada</li>
+                    </ul>
+                    <a href="https://www.mongodb.com/atlas" target="_blank" class="service-link">
+                        Visitar MongoDB Atlas
+                    </a>
+                </div>
+            </div>
+        </section>
         
         <!-- Botón para volver al inicio -->
         <div style="text-align: center; margin: 40px 0;">
