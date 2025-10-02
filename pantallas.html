@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantallas - CocinaFácil</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #f9f9f9 0%, #e8f4f8 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* BARRA DE NAVEGACIÓN MEJORADA */
+        .main-nav {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a2530 100%);
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .main-nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .main-nav li {
+            margin: 0;
+        }
+
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid transparent;
+        }
+
+        .main-nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        .nav-icon {
+            font-size: 1.1rem;
+            filter: brightness(1.2);
+        }
+
+        .nav-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .screen-section {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        .screen-section.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .phone-mockup {
+            width: 320px;
+            height: 650px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+            border: 3px solid var(--primary-color);
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 25px;
+            background: var(--primary-color);
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            z-index: 10;
+        }
+
+        .screen {
+            width: 100%;
+            height: 100%;
+            padding: 40px 20px 20px;
+            background: white;
+            overflow-y: auto;
+        }
+
+        .screen-content {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .app-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .app-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary-color);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .search-bar {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+
+        .search-button {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            padding: 0 15px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .chips-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .chip {
+            background: var(--light-color);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .chip-close {
+            margin-left: 8px;
+            cursor: pointer;
+            color: var(--accent-color);
+        }
+
+        .add-button {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .recipe-card {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+            border: 1px solid #e9ecef;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .recipe-content {
+            padding: 15px;
+        }
+
+        .recipe-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .recipe-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .recipe-ingredients {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .recipe-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .action-button {
+            background: none;
+            border: none;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .action-button:hover {
+            background: var(--light-color);
+        }
+
+        .detail-header {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .detail-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #a1c4fd 0%, #c2e9fb 100%);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background: white;
+        }
+
+        .favorite-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--accent-color);
+            transition: background-color 0.3s;
+        }
+
+        .favorite-button:hover {
+            background: white;
+        }
+
+        .recipe-detail-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .recipe-detail-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 20px 0 10px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--light-color);
+            padding-bottom: 5px;
+        }
+
+        .ingredients-list, .steps-list {
+            list-style-type: none;
+        }
+
+        .ingredients-list li, .steps-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            margin-right: 10px;
+        }
+
+        .tab-bar {
+            display: flex;
+            justify-content: space-around;
+            background: white;
+            border-top: 1px solid #eee;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .tab-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .tab-item.active {
+            color: var(--secondary-color);
+        }
+
+        .tab-icon {
+            font-size: 1.2rem;
+            margin-bottom: 3px;
+        }
+
+        .screen-info {
+            flex: 1;
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            border: 1px solid #e9ecef;
+        }
+
+        .screen-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .screen-description {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .functionality {
+            background: var(--light-color);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .functionality h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .functionality h3:before {
+            content: "⚙️";
+            margin-right: 10px;
+        }
+
+        .functionality ul {
+            padding-left: 20px;
+        }
+
+        .functionality li {
+            margin-bottom: 8px;
+        }
+
+        .next-screen {
+            background: #e8f6f3;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .next-screen h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .next-screen h3:before {
+            content: "➡️";
+            margin-right: 10px;
+        }
+
+        .navigation-flow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+            font-size: 2rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        @media (max-width: 1100px) {
+            .screen-section {
+                flex-direction: column;
+            }
+            
+            .phone-mockup {
+                align-self: center;
+            }
+            
+            .screen-section.reverse {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .phone-mockup {
+                width: 300px;
+                height: 600px;
+            }
+            
+            .main-nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 5px;
+            }
+            
+            .main-nav a {
+                width: 250px;
+                justify-content: center;
+            }
+            
+            .nav-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- BARRA DE NAVEGACIÓN MEJORADA (NO STICKY) -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-title">Navegación del Proyecto</div>
+            <ul>
+                <li><a href="index.html#seccion1"><span class="nav-icon">📱</span> Metodologías Ágiles</a></li>
+                <li><a href="index.html#seccion2"><span class="nav-icon">🔄</span> Metodología Scrum</a></li>
+                <li><a href="index.html#seccion3"><span class="nav-icon">📋</span> Plan de Desarrollo</a></li>
+                <li><a href="index.html#seccion4"><span class="nav-icon">⚙️</span> Framework y Pantallas</a></li>
+                <li><a href="index.html#galeria"><span class="nav-icon">🍳</span> Galería Culinaria</a></li>
+                <li><a href="index.html#pantallas-resultantes"><span class="nav-icon">📱</span> Pantallas Resultantes</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Flujo de Navegación - CocinaFácil</h1>
+            <p class="subtitle">Cómo funciona cada pantalla y cuál es la siguiente en el flujo de la aplicación</p>
+        </header>
+
+        <div class="flow-container">
+            <!-- Pantalla 1: Búsqueda de ingredientes -->
+            <div class="screen-section">
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="screen-content">
+                            <div class="app-bar">
+                                <div class="app-title">CocinaFácil</div>
+                                <div class="app-icon">CF</div>
+                            </div>
+                            
+                            <h2 style="margin-bottom: 15px; color: var(--primary-color);">¿Qué tienes en la nevera?</h2>
+                            <p style="margin-bottom: 20px; color: #666;">Agrega los ingredientes que tienes disponibles</p>
+                            
+                            <div class="search-bar">
+                                <input type="text" class="search-input" placeholder="Buscar ingredientes...">
+                                <button class="search-button">Buscar</button>
+                            </div>
+                            
+                            <div class="chips-container">
+                                <div class="chip">Tomate <span class="chip-close">×</span></div>
+                                <div class="chip">Cebolla <span class="chip-close">×</span></div>
+                                <div class="chip">Pollo <span class="chip-close">×</span></div>
+                                <div class="chip">Arroz <span class="chip-close">×</span></div>
+                                <button class="add-button">+</button>
+                            </div>
+                            
+                            <div style="margin-top: auto; text-align: center;">
+                                <button style="background: var(--secondary-color); color: white; border: none; border-radius: var(--border-radius); padding: 12px 30px; font-size: 1rem; cursor: pointer;">Buscar Recetas</button>
+                            </div>
+                            
+                            <div class="tab-bar">
+                                <div class="tab-item active">
+                                    <div class="tab-icon">🔍</div>
+                                    <div>Buscar</div>
+                                </div>
+                                <div class="tab-item">
+                                    <div class="tab-icon">❤️</div>
+                                    <div>Favoritos</div>
+                                </div>
+                                <div class="tab-item">
+                                    <div class="tab-icon">⚙️</div>
+                                    <div>Ajustes</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="screen-info">
+                    <div class="screen-name">Pantalla de Búsqueda</div>
+                    <div class="screen-description">
+                        Esta es la pantalla principal donde los usuarios comienzan su experiencia. Permite ingresar los ingredientes disponibles de manera intuitiva para encontrar recetas que puedan preparar.
+                    </div>
+                    
+                    <div class="functionality">
+                        <h3>Funcionalidades</h3>
+                        <ul>
+                            <li>Búsqueda de ingredientes mediante texto</li>
+                            <li>Visualización de ingredientes seleccionados como "chips"</li>
+                            <li>Posibilidad de eliminar ingredientes con el botón ×</li>
+                            <li>Agregar nuevos ingredientes con el botón +</li>
+                            <li>Navegación inferior entre secciones principales</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="next-screen">
+                        <h3>Siguiente Pantalla</h3>
+                        <p>Al presionar "Buscar Recetas", la aplicación navega a la <strong>Pantalla de Resultados</strong> donde se muestran las recetas que coinciden con los ingredientes seleccionados.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation-flow">↓</div>
+
+            <!-- Pantalla 2: Resultados de búsqueda -->
+            <div class="screen-section reverse">
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="screen-content">
+                            <div class="app-bar">
+                                <div class="app-title">Resultados</div>
+                                <div class="app-icon">CF</div>
+                            </div>
+                            
+                            <p style="margin-bottom: 15px; color: #666;">Encontramos 8 recetas con tus ingredientes</p>
+                            
+                            <div class="recipe-card">
+                                <div class="recipe-image">Pollo con Arroz</div>
+                                <div class="recipe-content">
+                                    <div class="recipe-title">Pollo con Arroz y Verduras</div>
+                                    <div class="recipe-meta">
+                                        <span>⏱️ 35 min</span>
+                                        <span>👥 4 personas</span>
+                                        <span>⭐ 4.5</span>
+                                    </div>
+                                    <div class="recipe-ingredients">Ingredientes: Pollo, arroz, cebolla, tomate, pimiento</div>
+                                    <div class="recipe-actions">
+                                        <button class="action-button">❤️ Favorito</button>
+                                        <button class="action-button">👁️ Ver</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="recipe-card">
+                                <div class="recipe-image">Ensalada</div>
+                                <div class="recipe-content">
+                                    <div class="recipe-title">Ensalada Mediterránea</div>
+                                    <div class="recipe-meta">
+                                        <span>⏱️ 15 min</span>
+                                        <span>👥 2 personas</span>
+                                        <span>⭐ 4.2</span>
+                                    </div>
+                                    <div class="recipe-ingredients">Ingredientes: Tomate, cebolla, pepino, aceitunas</div>
+                                    <div class="recipe-actions">
+                                        <button class="action-button">❤️ Favorito</button>
+                                        <button class="action-button">👁️ Ver</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-bar">
+                                <div class="tab-item">
+                                    <div class="tab-icon">🔍</div>
+                                    <div>Buscar</div>
+                                </div>
+                                <div class="tab-item active">
+                                    <div class="tab-icon">📋</div>
+                                    <div>Recetas</div>
+                                </div>
+                                <div class="tab-item">
+                                    <div class="tab-icon">⚙️</div>
+                                    <div>Ajustes</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="screen-info">
+                    <div class="screen-name">Resultados de Búsqueda</div>
+                    <div class="screen-description">
+                        Muestra las recetas que coinciden con los ingredientes que el usuario tiene disponibles. Cada receta se presenta en una tarjeta con información relevante para ayudar a decidir qué preparar.
+                    </div>
+                    
+                    <div class="functionality">
+                        <h3>Funcionalidades</h3>
+                        <ul>
+                            <li>Lista de recetas filtradas por ingredientes disponibles</li>
+                            <li>Información clave: tiempo de preparación, porciones y calificación</li>
+                            <li>Botón para agregar recetas a favoritos</li>
+                            <li>Acceso rápido al detalle completo de cada receta</li>
+                            <li>Indicador del número total de recetas encontradas</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="next-screen">
+                        <h3>Siguiente Pantalla</h3>
+                        <p>Al presionar "Ver" en cualquier receta, la aplicación navega a la <strong>Pantalla de Detalle de Receta</strong> con información completa sobre su preparación.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation-flow">↓</div>
+
+            <!-- Pantalla 3: Detalle de receta -->
+            <div class="screen-section">
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="screen-content">
+                            <div class="detail-header">
+                                <button class="back-button">←</button>
+                                <button class="favorite-button">❤️</button>
+                                <div class="detail-image">Pollo con Arroz</div>
+                            </div>
+                            
+                            <div class="recipe-detail-title">Pollo con Arroz y Verduras</div>
+                            
+                            <div class="recipe-detail-meta">
+                                <div class="meta-item">⏱️ 35 min</div>
+                                <div class="meta-item">👥 4 personas</div>
+                                <div class="meta-item">⭐ 4.5 (128)</div>
+                            </div>
+                            
+                            <div class="section-title">Ingredientes</div>
+                            <ul class="ingredients-list">
+                                <li>500g de pollo en trozos</li>
+                                <li>2 tazas de arroz</li>
+                                <li>1 cebolla grande</li>
+                                <li>2 tomates maduros</li>
+                                <li>1 pimiento rojo</li>
+                                <li>2 dientes de ajo</li>
+                                <li>Aceite de oliva</li>
+                                <li>Sal y pimienta al gusto</li>
+                            </ul>
+                            
+                            <div class="section-title">Preparación</div>
+                            <ol class="steps-list">
+                                <li><span class="step-number">1</span> Cortar el pollo en trozos y sazonar con sal y pimienta.</li>
+                                <li><span class="step-number">2</span> Picar la cebolla, tomates y pimiento en cubos pequeños.</li>
+                                <li><span class="step-number">3</span> Sofreír la cebolla y el ajo en aceite de oliva.</li>
+                                <li><span class="step-number">4</span> Añadir el pollo y dorar por todos lados.</li>
+                            </ol>
+                            
+                            <div style="margin-top: auto; text-align: center; padding: 15px 0;">
+                                <button style="background: var(--accent-color); color: white; border: none; border-radius: var(--border-radius); padding: 12px 30px; font-size: 1rem; cursor: pointer;">Comenzar a Cocinar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="screen-info">
+                    <div class="screen-name">Detalle de Receta</div>
+                    <div class="screen-description">
+                        Proporciona información completa sobre una receta específica, incluyendo todos los ingredientes necesarios y los pasos detallados para su preparación. Es la pantalla más importante para el usuario durante el proceso de cocina.
+                    </div>
+                    
+                    <div class="functionality">
+                        <h3>Funcionalidades</h3>
+                        <ul>
+                            <li>Vista completa de ingredientes con cantidades</li>
+                            <li>Instrucciones paso a paso para preparar la receta</li>
+                            <li>Botón para agregar o quitar de favoritos</li>
+                            <li>Información nutricional básica (opcional)</li>
+                            <li>Modo "Cocinar" que guía al usuario durante la preparación</li>
+                            <li>Botón de retroceso para volver a los resultados</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="next-screen">
+                        <h3>Siguiente Pantalla</h3>
+                        <p>Al presionar "Comenzar a Cocinar", la aplicación puede mostrar una <strong>Pantalla de Modo Cocina</strong> con instrucciones paso a paso interactivas. Al presionar el botón de retroceso (←), se regresa a la pantalla anterior de resultados.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation-flow">↓</div>
+
+            <!-- Pantalla 4: Favoritos -->
+            <div class="screen-section reverse">
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="screen-content">
+                            <div class="app-bar">
+                                <div class="app-title">Mis Favoritos</div>
+                                <div class="app-icon">CF</div>
+                            </div>
+                            
+                            <p style="margin-bottom: 15px; color: #666;">Tus recetas guardadas</p>
+                            
+                            <div class="recipe-card">
+                                <div class="recipe-image">Pasta</div>
+                                <div class="recipe-content">
+                                    <div class="recipe-title">Pasta Alfredo</div>
+                                    <div class="recipe-meta">
+                                        <span>⏱️ 20 min</span>
+                                        <span>👥 2 personas</span>
+                                        <span>⭐ 4.8</span>
+                                    </div>
+                                    <div class="recipe-ingredients">Ingredientes: Pasta, crema, queso parmesano, ajo</div>
+                                    <div class="recipe-actions">
+                                        <button class="action-button">🗑️ Eliminar</button>
+                                        <button class="action-button">👁️ Ver</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="recipe-card">
+                                <div class="recipe-image">Postre</div>
+                                <div class="recipe-content">
+                                    <div class="recipe-title">Flan de Vainilla</div>
+                                    <div class="recipe-meta">
+                                        <span>⏱️ 60 min</span>
+                                        <span>👥 6 personas</span>
+                                        <span>⭐ 4.9</span>
+                                    </div>
+                                    <div class="recipe-ingredients">Ingredientes: Huevos, leche, azúcar, vainilla</div>
+                                    <div class="recipe-actions">
+                                        <button class="action-button">🗑️ Eliminar</button>
+                                        <button class="action-button">👁️ Ver</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-bar">
+                                <div class="tab-item">
+                                    <div class="tab-icon">🔍</div>
+                                    <div>Buscar</div>
+                                </div>
+                                <div class="tab-item active">
+                                    <div class="tab-icon">❤️</div>
+                                    <div>Favoritos</div>
+                                </div>
+                                <div class="tab-item">
+                                    <div class="tab-icon">⚙️</div>
+                                    <div>Ajustes</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="screen-info">
+                    <div class="screen-name">Recetas Favoritas</div>
+                    <div class="screen-description">
+                        Almacena todas las recetas que el usuario ha marcado como favoritas para acceso rápido. Es una colección personalizada de las recetas que más le gustan al usuario.
+                    </div>
+                    
+                    <div class="functionality">
+                        <h3>Funcionalidades</h3>
+                        <ul>
+                            <li>Lista de todas las recetas marcadas como favoritas</li>
+                            <li>Posibilidad de eliminar recetas de favoritos</li>
+                            <li>Acceso rápido al detalle de cada receta favorita</li>
+                            <li>Visualización similar a la pantalla de resultados</li>
+                            <li>Mensaje cuando no hay recetas favoritas</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="next-screen">
+                        <h3>Siguiente Pantalla</h3>
+                        <p>Al presionar "Ver" en cualquier receta favorita, la aplicación navega a la <strong>Pantalla de Detalle de Receta</strong> correspondiente. Desde aquí también se puede volver a la pantalla de búsqueda mediante la navegación inferior.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="navigation-flow">↓</div>
+
+            <!-- Pantalla 5: Escaneo de ingredientes -->
+            <div class="screen-section">
+                <div class="phone-mockup">
+                    <div class="phone-notch"></div>
+                    <div class="screen">
+                        <div class="screen-content">
+                            <div class="app-bar">
+                                <div class="app-title">Escanear</div>
+                                <div class="app-icon">CF</div>
+                            </div>
+                            
+                            <div style="text-align: center; margin: 30px 0;">
+                                <div style="width: 200px; height: 200px; border: 3px dashed var(--secondary-color); border-radius: 10px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: var(--secondary-color); font-size: 3rem;">
+                                    📷
+                                </div>
+                                <h3 style="margin-bottom: 10px; color: var(--primary-color);">Escanea tus ingredientes</h3>
+                                <p style="color: #666; margin-bottom: 20px;">Apunta con la cámara a los ingredientes que tienes disponibles</p>
+                                <button style="background: var(--secondary-color); color: white; border: none; border-radius: var(--border-radius); padding: 12px 30px; font-size: 1rem; cursor: pointer;">Iniciar Escaneo</button>
+                            </div>
+                            
+                            <div style="margin-top: auto;">
+                                <div class="section-title">Ingredientes detectados</div>
+                                <div class="chips-container">
+                                    <div class="chip">Tomate <span class="chip-close">×</span></div>
+                                    <div class="chip">Cebolla <span class="chip-close">×</span></div>
+                                    <div class="chip">Zanahoria <span class="chip-close">×</span></div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-bar">
+                                <div class="tab-item">
+                                    <div class="tab-icon">🔍</div>
+                                    <div>Buscar</div>
+                                </div>
+                                <div class="tab-item">
+                                    <div class="tab-icon">📋</div>
+                                    <div>Recetas</div>
+                                </div>
+                                <div class="tab-item active">
+                                    <div class="tab-icon">📷</div>
+                                    <div>Escanear</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="screen-info">
+                    <div class="screen-name">Escaneo OCR</div>
+                    <div class="screen-description">
+                        Permite a los usuarios escanear ingredientes usando la cámara del dispositivo. Utiliza tecnología de reconocimiento óptico de caracteres (OCR) para identificar automáticamente los ingredientes y agregarlos a la búsqueda.
+                    </div>
+                    
+                    <div class="functionality">
+                        <h3>Funcionalidades</h3>
+                        <ul>
+                            <li>Activación de cámara para escanear ingredientes</li>
+                            <li>Reconocimiento automático de texto en etiquetas de productos</li>
+                            <li>Visualización de ingredientes detectados como chips</li>
+                            <li>Posibilidad de eliminar ingredientes incorrectos</li>
+                            <li>Integración con la base de datos de ingredientes de la app</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="next-screen">
+                        <h3>Siguiente Pantalla</h3>
+                        <p>Una vez escaneados los ingredientes, al presionar "Buscar Recetas" (no visible en esta pantalla pero disponible después del escaneo), la aplicación navega a la <strong>Pantalla de Resultados</strong> con las recetas que coinciden con los ingredientes detectados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Botón para volver al inicio -->
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="index.html" style="display: inline-block; background: var(--primary-color); color: white; padding: 12px 30px; border-radius: var(--border-radius); text-decoration: none; font-weight: bold; transition: background-color 0.3s;">
+                ← Volver al Inicio
+            </a>
+        </div>
+    </div>
+</body>
+</html>
